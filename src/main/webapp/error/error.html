@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="error-page">
+    ${code=} <!--<span th:text="${code}"></span>-->
+    <h2 class="headline text-red" th:text="${code}"></h2>
+    <div class="error-content" style="margin-top: 120px;">
+        <h3><i class="fa fa-warning text-red"></i> 天哪! 好像遇到了错误.</h3>
+        <p style="font-size: 1.2em;">
+            错误信息： <!--<span th:text="${message}" class="text text-danger"></span>-->
+        </p>
+        <p><a href="javascript:history.go(-1)">返回上一页</a></p>
+        <form class="search-form">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search">
+                <div class="input-group-btn">
+                    <button type="submit" name="submit" class="btn btn-danger btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.input-group -->
+        </form>
+    </div>
+</div>
+<!-- /.error-page -->
+
+</body>
+</html>

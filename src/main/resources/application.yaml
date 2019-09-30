@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/crm?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: 123456
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true
+    add-properties: true
+  redis:
+    host: 192.168.164.129
+    port: 6379
+    password:
+mybatis:
+  type-aliases-package: com.wzy.video.bean
+pagehelper:
+  auto-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
