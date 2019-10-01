@@ -33,7 +33,7 @@ public class RedisConfig {
     JedisPoolConfig jedisPoolConfig;
 
     //过期时间1天
-    private Duration timeToLive = Duration.ofHours(1);
+    private Duration timeToLive = Duration.ofMinutes(1);
 
     //缓存管理器
     @Bean

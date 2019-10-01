@@ -22,13 +22,14 @@ public class UserManageController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("users")
+    @GetMapping(value = "users",name = "查询所有")
     public ModelAndView findAll(@RequestParam(required = true,defaultValue = "1",value = "page")Integer page,
                           @RequestParam(required = true,defaultValue = "4",value = "size")Integer size){
         List<UserData> userData = userService.findAllUser(page,size);
         //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
         PageInfo pageInfo = new PageInfo<>(userData);
         ModelAndView mv = new ModelAndView();
+
         mv.addObject("pageInfo", pageInfo);
         mv.setViewName("user-page-list");
         return mv;
@@ -82,10 +83,9 @@ public class UserManageController {
         return "redirect:userList";
     }*/
 
-    @PostMapping("/login")
-    public String doLogin(HttpServletResponse response,
-                                @RequestParam("username") String username,
-                                @RequestParam("password") String password) {
+    @PostMapping(value = "/login",name = "登录后台")
+    public String doLogin(@RequestParam("username") String username,
+                          @RequestParam("password") String password) {
 //        ModelAndView mv = new ModelAndView();
         //登录
         log.info("用户登录：username:{}, password:{}", username, password);

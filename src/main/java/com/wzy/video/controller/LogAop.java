@@ -5,6 +5,7 @@ import com.wzy.video.bean.SysLog;
 import com.wzy.video.service.SysLogService;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,8 +20,9 @@ import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.UUID;
 
-/*@Component
-@Aspect*/
+@Slf4j
+@Component
+@Aspect
 public class LogAop {
 
 	@Autowired
@@ -38,7 +40,8 @@ public class LogAop {
 	public void doBefore(JoinPoint jp) throws NoSuchMethodException, SecurityException{
 		visitTime = new Date(); // 和当前时间就是开始访问的时间
 		clazz = jp.getTarget().getClass();  //具体访问的类
-		
+		System.out.println("clazz:"+clazz);
+
 		/*
 		 *1.现获取访问方法名称（签名
 		 *2. 通过getMethod获取访问真正的方法
@@ -50,12 +53,14 @@ public class LogAop {
 		//获取具体执行的方法的method对象
 		if(args==null||args.length==0){
 			method = clazz.getMethod(methodName);
+			System.out.println("method"+method);
 		}else{
 			Class[] classArgs = new Class[args.length];
 			for(int i=0; i<args.length;i++){
 				classArgs[i] = args[i].getClass();
 			}
 			method = clazz.getMethod(methodName, classArgs);
+			System.out.println("method"+method);
 		}
 		
 	}
@@ -90,7 +95,7 @@ public class LogAop {
 		
 		//获取访问的IP地址 通过request对象
 		String ip = request.getRemoteAddr();
-		
+		log.info("ip:"+ip);
 /*		//获取当前操作的用户
 		SecurityContext context = SecurityContextHolder.getContext();
 		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) context.getAuthentication().getPrincipal();

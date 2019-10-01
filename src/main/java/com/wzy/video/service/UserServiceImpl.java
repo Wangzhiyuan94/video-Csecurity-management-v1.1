@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     /*主页业务*/
     @Override
-    @Cacheable(value = USERS_CACHE_NAME,key = "#page+'-'+#size")
+    /*@Cacheable(value = USERS_CACHE_NAME,key = "#page+'-'+#size")*/
     public List<UserData> findAllUser(Integer page,Integer size) {
         PageHelper.startPage(page,size);
         return userdao.findAllUser();

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -47,14 +48,15 @@ public class syslogManageController {
 	{
 		
     	ModelAndView mv = new ModelAndView();
+    	Long start = System.currentTimeMillis();
     	List<SysLog> sysLogs = sysLogService.main();
-    	//使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
-        
-        
-        mv.addObject("sysLogs", sysLogs);
+    	Long end = System.currentTimeMillis();
+    	System.out.println("耗时："+(end-start));
+    	mv.addObject("sysLogs", sysLogs);
     	mv.setViewName("main");
 		return mv;
  
-    }		
-	
+    }
+
+
 }
