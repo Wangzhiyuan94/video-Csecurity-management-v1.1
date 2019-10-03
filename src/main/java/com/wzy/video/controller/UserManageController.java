@@ -2,6 +2,7 @@ package com.wzy.video.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
+import com.wzy.video.bean.Role;
 import com.wzy.video.bean.UserData;
 import com.wzy.video.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +64,7 @@ public class UserManageController {
         userService.updateById(id);
         return "ok";
     }
-/*    @RequestMapping("findUserByIdAllRole")
+    @RequestMapping("findUserByIdAllRole")
     public ModelAndView findUserByIdAllRole(@RequestParam(value="id",required = true) String userid){
         ModelAndView mv = new ModelAndView();
         //1.根据Id查询用户
@@ -75,15 +76,15 @@ public class UserManageController {
         mv.addObject("roleList",otherRoles);
         mv.setViewName("addRoleToUser");
         return mv;
-    }*/
+    }
 
-/*    @RequestMapping("/addRoleToUser")
+    @RequestMapping("/addRoleToUser")
     public String addRoleToUser(@RequestParam(name = "userId",required = true ) String userId,@RequestParam(name="ids",required = true)String[] roleIds){
         userService.addRoleToUser(userId,roleIds);
         return "redirect:userList";
-    }*/
+    }
 
-    @PostMapping(value = "/login",name = "登录后台")
+    /*@PostMapping(value = "/login",name = "登录后台")
     public String doLogin(@RequestParam("username") String username,
                           @RequestParam("password") String password) {
 //        ModelAndView mv = new ModelAndView();
@@ -95,8 +96,8 @@ public class UserManageController {
 //            mv.setViewName("failer");
             return "failer";
         }
-        /*mv.setViewName("main");*/
+        *//*mv.setViewName("main");*//*
         return "ok";
-    }
+    }*/
 }
 

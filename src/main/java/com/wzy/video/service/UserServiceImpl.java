@@ -7,6 +7,7 @@ import com.wzy.video.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userdao;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     /*主页业务*/
     @Override
     /*@Cacheable(value = USERS_CACHE_NAME,key = "#page+'-'+#size")*/
@@ -40,10 +43,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CacheEvict(value = USERS_CACHE_NAME,allEntries = true,beforeInvocation = true)
+   /* @CacheEvict(value = USERS_CACHE_NAME,allEntries = true,beforeInvocation = true)*/
     public UserData save(UserData userData) {
         userData.setId(UUID.randomUUID().toString());
-        /*userData.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));*/
+        userData.setPassword(bCryptPasswordEncoder.encode(userData.getPassword()));
         userdao.save(userData);
         return userData;
     }

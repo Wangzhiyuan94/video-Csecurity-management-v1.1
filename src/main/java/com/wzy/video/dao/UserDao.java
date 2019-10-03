@@ -42,4 +42,21 @@ public interface UserDao {
 
     @Insert("insert into user_role(uid,rid) values(#{userId},#{roleId})")
     public void addRoleToUser(@Param("userId")String userId,@Param("roleId")String roleId);
+
+
+    @Select("select * from user where name = #{username}")
+    @Results({
+            @Result(id = true, property = "id", column= "id"),
+            @Result(property = "name", column="name"),
+            @Result(property = "password", column="password"),
+            @Result(property = "status", column="status"),
+            @Result(property = "user_sex", column="user_sex"),
+            @Result(property = "user_email", column="user_email"),
+            @Result(property = "user_tel", column="user_tel"),
+            @Result(property = "user_birthday", column="user_birthday"),
+            @Result(property = "roles",column = "id",javaType = List.class,many = @Many(select = "com.wzy.video.dao.RoleDao.findRoleByUserId"))
+    })
+    public UserData findByUsername(String username);
+
+
 }

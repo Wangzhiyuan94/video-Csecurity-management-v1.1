@@ -39,7 +39,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">登录系统</p>
 
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="Email" name = "username" id="username">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -56,7 +56,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="button" class="btn btn-primary btn-block btn-flat" id="button">登录</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" <%--id="button"--%>>登录</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -100,7 +100,7 @@
             }else{*/
                 $.ajax({
                     type:"post",
-                    url:"<%=basePath%>user/login",
+                    url:"<%=basePath%>/login",
                     data:{username:username,password:password},
                     success:function(result){
                         console.log(result)

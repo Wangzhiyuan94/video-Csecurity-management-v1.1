@@ -15,7 +15,7 @@ public interface RoleDao {
 		@Result(id = true, property = "id", column= "id"),
 		@Result(property = "roleName", column="roleName"),
 		@Result(property = "roleDesc", column="roleDesc"),
-		@Result(property = "permissions", column = "id", javaType= List.class, many = @Many(select = "com.itheima.crm.mapper.PermissionDao.findPermissionByRoleId"))
+		@Result(property = "permissions", column = "id", javaType= List.class, many = @Many(select = "com.wzy.video.dao.PermissionDao.findPermissionByRoleId"))
 	})
 	public List<Role> findRoleByUserId(String uid);
 

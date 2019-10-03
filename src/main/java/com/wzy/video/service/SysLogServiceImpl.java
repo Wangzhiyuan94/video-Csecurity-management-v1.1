@@ -33,7 +33,7 @@ public class SysLogServiceImpl implements SysLogService{
 	}
 
 	@Override
-	@Cacheable(value = LOGS_CACHE_NAME,key = "'log7'")
+	/*@Cacheable(value = LOGS_CACHE_NAME,key = "'log7'")*/
 	public List<SysLog> main() {
 		return sysLogDao.findAll();
 	}
